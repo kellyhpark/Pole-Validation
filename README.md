@@ -2,7 +2,6 @@
 ```
 ├── annotations
 │   ├── custom_train.json
-│   │   ├── **/*.css
 │   ├── custom_val.json
 ├── data
 │   ├── HumAID
