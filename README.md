@@ -1,4 +1,28 @@
-# Pole-Validation
+# Pole-Validation: Identifying Electric Poles and Analyzing Reports
+
+This repository aims to replicate the workflow of a potential utility app that will allow users to report faulty electrical poles by taking photos of them and provide a written description of the problem. By training the DETR (End-to-End Object Detection with Transformers) object detection model with a custom dataset, and applying two NLP (Natural Language Processing) models to a sample disaster dataset, we aim to fine-tune these models and provide a proof of concept. Through this, we hope to prove the possibility and uses of a customer report app for utility companies.
+
+## Data Sources
+Data for this project is stored in the ```data``` directory in the repo, which contains training and validation images for the ```optimize_detr.ipynb``` notebook, which are manually collected images of poles in the neighborhood.
+
+The ```HumAID``` data, used for ```sentiment_urgency_analysis.ipynb``` and ```topic_classification.ipynb``` is sourced from [CRISIS NLP](https://crisisnlp.qcri.org/humaid_dataset).
+
+## Setup
+
+### Conda Environment
+After cloning repo, navigate to root folder and run:
+```
+streamlit run app.py
+conda env create -f environment.yml
+```
+
+### Before Fine-tuning DETR
+As fine-tuning cannot be run without a GPU, the optimize_detr.ipynb notebook **must** be run on [Google Colab](https://colab.google/) or a PC with a GPU. Running the notebook on Google Colab may be done by downloading the finetuning notebook and uploading. If running the notebook on a PC with a GPU, additional steps listed within the notebook.
+
+When prompted to do so within the notebook, please upload the image training and validation data to their respective directories. Additionally locate the custom_train.json and custom_val.json files in the 'annotation' directory and upload/move accordingly as instructed in the notebook.
+
+## Project Structure
+
 ```
 ├── annotations
 │   ├── custom_train.json
@@ -8,16 +32,10 @@
 │   ├── training
 │   ├── validation
 ├── notebooks
-│   ├── finetune_detr-3.ipynb
 │   ├── optimize_detr.ipynb
 │   ├── sentiment_urgency_analysis.ipynb
 ├── app.py <- demo app 
 ├── README.md
 ├── environment.yml
 └── .gitignore
-```
-
-To run app, navigate to root folder and run:
-```
-streamlit run app.py
 ```
