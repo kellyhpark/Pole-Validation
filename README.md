@@ -34,6 +34,7 @@ When prompted to do so within the notebook, please upload the image training and
 ├── notebooks
 │   ├── optimize_detr.ipynb
 │   ├── sentiment_urgency_analysis.ipynb
+│   ├── topic_classification.ipynb
 ├── app.py <- demo app 
 ├── README.md
 ├── environment.yml
