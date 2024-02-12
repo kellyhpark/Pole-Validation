@@ -47,4 +47,3 @@ if st.button('Submit'):
     
     # Display the sentiment result
     st.write(f"Sentiment: **{sentiment}**")
-    st.write("We have to do something about this sentiment result, for example tell them to calm down or call 911... or something idk")
