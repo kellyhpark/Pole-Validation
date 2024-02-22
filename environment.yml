@@ -21,3 +21,4 @@ dependencies:
     - openpyxl
     - pyproj
     - tqdm
+    - streamlit
