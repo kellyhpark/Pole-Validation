@@ -2,6 +2,7 @@ import streamlit as st
 import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import pickle
 
 # Streamlit UI
 st.title('SDG&E APP')
@@ -31,6 +32,8 @@ if uploaded_image is not None:
 
 # Initialize the sentiment analyzer
 sia = SentimentIntensityAnalyzer()
+# with open('../models/svm_model.pkl', 'rb') as f:
+#     sgd = pickle.load(f)
 
 # Text analysis UI
 user_input = st.text_area("Is there something you'd want us to know?")
@@ -39,6 +42,7 @@ user_input = st.text_area("Is there something you'd want us to know?")
 if st.button('Submit'):
     # Perform sentiment analysis only if the button is pressed
     scores = sia.polarity_scores(user_input)
+    #topic = sgd.predict([user_input])
     sentiment = 'Neutral'
     if scores['compound'] > 0.05:
         sentiment = 'Positive'
@@ -46,4 +50,5 @@ if st.button('Submit'):
         sentiment = 'Negative'
     
     # Display the sentiment result
-    st.write(f"Sentiment: **{sentiment}**")
+    st.write(f"Sentiment: **{sentiment, scores['compound']}**")
+    #st.write(f"Sentiment: **{topic}**")
