@@ -17,9 +17,11 @@ conda env create -f environment.yml
 ```
 
 ### Before Fine-tuning DETR
-As fine-tuning cannot be run without a GPU, the optimize_detr.ipynb notebook **must** be run on [Google Colab](https://colab.google/) or a PC with a GPU. Running the notebook on Google Colab may be done by downloading the finetuning notebook and uploading. If running the notebook on a PC with a GPU, additional steps listed within the notebook.
+As fine-tuning cannot be run without a GPU, the ```optimize_detr.ipynb``` notebook **must** be run on [Google Colab](https://colab.google/) or a PC with a GPU. Running the notebook on Google Colab may be done by downloading the finetuning notebook and uploading. If running the notebook on a PC with a GPU, additional steps listed within the notebook.
 
 When prompted to do so within the notebook, please upload the image training and validation data to their respective directories. Additionally locate the custom_train.json and custom_val.json files in the 'annotation' directory and upload/move accordingly as instructed in the notebook.
+
+Please note that running the ```sentiment_urgency_analysis.ipynb``` and ```topic_classification.ipynb``` do not require a GPU to be run.
 
 ## Project Structure
 
