@@ -21,7 +21,7 @@ As fine-tuning cannot be run without a GPU, the ```optimize_detr.ipynb``` notebo
 
 When prompted to do so within the notebook, please upload the image training and validation data to their respective directories. Additionally locate the custom_train.json and custom_val.json files in the 'annotation' directory and upload/move accordingly as instructed in the notebook.
 
-Please note that running the ```sentiment_urgency_analysis.ipynb``` and ```topic_classification.ipynb``` do not require a GPU to be run.
+Please note that running the ```sentiment_urgency_analysis.ipynb``` and ```topic_classification.ipynb``` notebooks do not require a GPU to be run.
 
 ## Project Structure
 
