@@ -2,6 +2,7 @@ import streamlit as st
 import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import pickle
 
 # Streamlit UI
 st.title('SDG&E APP')
@@ -31,6 +32,13 @@ if uploaded_image is not None:
 
 # Initialize the sentiment analyzer
 sia = SentimentIntensityAnalyzer()
+sia.lexicon.update({"collision": -4.0, "collide": -4.0, "collided": -4.0, "broke": -3.0, "broken": -3.0, \
+                           "damaged": -2.0, "damage": -2.0, "corrosion": -2.0, "rust": -2.0, "storm": -3.5, \
+                           "crash": -4.0, "lean": -2.0, "unstable": -2.0, "low-hanging": -1.5, "wire": -1.0, \
+                           "outage": -4, "expose": -2, "fire": -4.0, "spark": -3.0, "smoke": -3.0, \
+                           "flame": -4.0, "overgrown": -1.5, "tree": -1.0, "noise": -1.0, "sound": -1.0})
+sgd = pickle.load(open('models/svm_model.pkl', 'rb'))
+
 
 # Text analysis UI
 user_input = st.text_area("Is there something you'd want us to know?")
@@ -39,6 +47,7 @@ user_input = st.text_area("Is there something you'd want us to know?")
 if st.button('Submit'):
     # Perform sentiment analysis only if the button is pressed
     scores = sia.polarity_scores(user_input)
+    topic = sgd.predict([user_input])
     sentiment = 'Neutral'
     if scores['compound'] > 0.05:
         sentiment = 'Positive'
@@ -46,5 +55,5 @@ if st.button('Submit'):
         sentiment = 'Negative'
     
     # Display the sentiment result
-    st.write(f"Sentiment: **{sentiment}**")
-    st.write("We have to do something about this sentiment result, for example tell them to calm down or call 911... or something idk")
+    st.write(f"Sentiment: **{sentiment, scores['compound']}**")
+    st.write(f"The topic is **{topic[0]}**")
