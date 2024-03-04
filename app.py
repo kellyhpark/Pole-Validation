@@ -37,8 +37,8 @@ sia.lexicon.update({"collision": -4.0, "collide": -4.0, "collided": -4.0, "broke
                            "crash": -4.0, "lean": -2.0, "unstable": -2.0, "low-hanging": -1.5, "wire": -1.0, \
                            "outage": -4, "expose": -2, "fire": -4.0, "spark": -3.0, "smoke": -3.0, \
                            "flame": -4.0, "overgrown": -1.5, "tree": -1.0, "noise": -1.0, "sound": -1.0})
-# with open('../models/svm_model.pkl', 'rb') as f:
-#     sgd = pickle.load(f)
+sgd = pickle.load(open('models/svm_model.pkl', 'rb'))
+
 
 # Text analysis UI
 user_input = st.text_area("Is there something you'd want us to know?")
@@ -47,7 +47,7 @@ user_input = st.text_area("Is there something you'd want us to know?")
 if st.button('Submit'):
     # Perform sentiment analysis only if the button is pressed
     scores = sia.polarity_scores(user_input)
-    #topic = sgd.predict([user_input])
+    topic = sgd.predict([user_input])
     sentiment = 'Neutral'
     if scores['compound'] > 0.05:
         sentiment = 'Positive'
@@ -56,4 +56,4 @@ if st.button('Submit'):
     
     # Display the sentiment result
     st.write(f"Sentiment: **{sentiment, scores['compound']}**")
-    #st.write(f"Sentiment: **{topic}**")
+    st.write(f"The topic is **{topic[0]}**")
