@@ -33,6 +33,9 @@ Please note that running the ```sentiment_urgency_analysis.ipynb``` and ```topic
 │   ├── HumAID
 │   ├── training
 │   ├── validation
+├── models
+│   ├── detr_results
+│   ├── svm_model.pkl
 ├── notebooks
 │   ├── optimize_detr.ipynb
 │   ├── sentiment_urgency_analysis.ipynb
