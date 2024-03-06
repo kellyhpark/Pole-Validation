@@ -1,4 +1,4 @@
-name: streetwatch5
+name: streetwatch
 channels:
   - conda-forge
   - defaults
