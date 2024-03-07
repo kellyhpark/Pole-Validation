@@ -7,30 +7,13 @@ from streamlit_image_select import image_select
 
 # Streamlit UI
 st.title('CERA: ML Model Demo')
+st.write("The following page presents a rudimentary demonstration of the capabilities of initial pole validation through object detection models, and topic and sentiment identification through NLP (natual language processing) models. In the future, these models can be further developed to identify more visual and written risks to aid both the users and SDG&E.")
 
 ############### IMAGE ANALYSIS ###############
-
-# Image upload UI
-st.write("Upload an image of a utility pole for analysis:")
-uploaded_image = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png'])
-
-# Assuming we have a function to process the image and analyze it:
-# process_uploaded_image(uploaded_image)
-
-if uploaded_image is not None:
-    # Display the uploaded image
-    st.image(uploaded_image, caption='Uploaded Image.', use_column_width=True)
-    
-    # If you there is an image analysis model ready, process the image here
-    # and display the results. For example:
-    # result = process_uploaded_image(uploaded_image)
-    # st.write(f"Image analysis result: **{result}**")
-
-# Note: we'll need to implement the process_uploaded_image function based on our model.
     
 # Image selection
 img = image_select(
-    label="Select an example image",
+    label="Select an example image for analysis",
     images=[
         "data/validation/IMG_6859.jpg",
         "data/validation/IMG_6864.jpg",
@@ -41,16 +24,16 @@ img = image_select(
 st.write("Image validation results:")
 if img == "data/validation/IMG_6859.jpg":
     st.image("models/detr_results/valid02.png")
-    st.write("**An electric pole has been identified with 58% confidence**")
+    st.write("**An electric pole has been identified with 58% confidence.**")
 elif img == "data/validation/IMG_6864.jpg":
     st.image("models/detr_results/valid012.png")
-    st.write("**An electric pole has been identified with 73% confidence**")
+    st.write("**An electric pole has been identified with 73% confidence.**")
 elif img == "data/validation/IMG_6875.jpg":
     st.image("models/detr_results/valid0122.png")
-    st.write("**An electric pole has been identified with 68% confidence**")
+    st.write("**An electric pole has been identified with 68% confidence.**")
 else:
     st.image("models/detr_results/valid0123.png")
-    st.write("**An electric pole has been identified with 97% confidence**")
+    st.write("**An electric pole has been identified with 97% confidence.**")
 
 
 ############### TEXT ANALYSIS ###############
@@ -80,6 +63,7 @@ if st.button('Submit'):
     elif scores['compound'] < -0.05:
         sentiment = 'Negative'
     
+    topic_mod = (topic[0]).replace("_", " ")
     # Display the sentiment result
-    st.write(f"Sentiment: **{sentiment, scores['compound']}**")
-    st.write(f"The topic is **{topic[0]}**")
+    st.write(f"The overall predicted sentiment of this written report is: **{sentiment}** with a compound score of **{scores['compound']}**")
+    st.write(f"The predicted topic of this written report is: **{topic_mod}**")
