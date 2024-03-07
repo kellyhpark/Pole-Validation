@@ -25,3 +25,4 @@ dependencies:
     - nltk
     - scikit-learn
     - beautifulsoup4
+    - streamlit-image-select
