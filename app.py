@@ -4,6 +4,9 @@ nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pickle
 from streamlit_image_select import image_select
+from nltk.corpus import stopwords
+import re
+from bs4 import BeautifulSoup
 
 # Streamlit UI
 st.title('CERA: ML Model Demo')
@@ -53,6 +56,20 @@ sgd = pickle.load(open('models/svm_model.pkl', 'rb'))
 
 # Text analysis UI
 user_input = st.text_area("Please describe the problem with the electric pole, and include any noticable visible or audible areas of concern.")
+
+# Clean the text input
+REPLACE_BY_SPACE_RE = re.compile('[/(){}\[\]\|@,;]')
+BAD_SYMBOLS_RE = re.compile('[^0-9a-z #+_]')
+STOPWORDS = set(stopwords.words('english'))
+
+# Clean given text
+def clean_text(text):
+    text = BeautifulSoup(text, "lxml").text # HTML decoding
+    text = text.lower() # lowercase text
+    text = REPLACE_BY_SPACE_RE.sub(' ', text) # replace REPLACE_BY_SPACE_RE symbols by space in text
+    text = BAD_SYMBOLS_RE.sub('', text) # delete symbols which are in BAD_SYMBOLS_RE from text
+    text = ' '.join(word for word in text.split() if word not in STOPWORDS) # delete stopwors from text
+    return text
 
 # Add an "Analyze" button for text sentiment analysis
 if st.button('Submit'):
