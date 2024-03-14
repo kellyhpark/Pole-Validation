@@ -33,17 +33,17 @@ Please note that running the ```sentiment_urgency_analysis.ipynb``` and ```topic
 ## Project Structure
 
 ```
-├── annotations
+├── annotations/
 │   ├── custom_train.json
 │   ├── custom_val.json
-├── data
-│   ├── HumAID
-│   ├── training
-│   ├── validation
-├── models
-│   ├── detr_results
+├── data/
+│   ├── HumAID/
+│   ├── training/
+│   ├── validation/
+├── models/
+│   ├── detr_results/
 │   ├── svm_model.pkl
-├── notebooks
+├── notebooks/
 │   ├── optimize_detr.ipynb
 │   ├── sentiment_urgency_analysis.ipynb
 │   ├── topic_classification.ipynb
