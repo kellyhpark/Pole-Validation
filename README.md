@@ -10,11 +10,18 @@ The ```HumAID``` data, used for ```sentiment_urgency_analysis.ipynb``` and ```to
 ## Setup
 
 ### Conda Environment
-After cloning repo, navigate to root folder and run:
+After cloning the repo, navigate to root folder and run:
 ```
-streamlit run app.py
 conda env create -f environment.yml
 ```
+
+### CERA Model Demo
+Run the CERA Model Demo page by running the following after setup is complete:
+```
+streamlit run app.py
+```
+
+In addition, the three notebooks available in the ```notebooks``` directory serve the purpose of replicating the visualizations and results of the CERA proof of concept.
 
 ### Before Fine-tuning DETR
 As fine-tuning cannot be run without a GPU, the ```optimize_detr.ipynb``` notebook **must** be run on [Google Colab](https://colab.google/) or a PC with a GPU. Running the notebook on Google Colab may be done by downloading the finetuning notebook and uploading. If running the notebook on a PC with a GPU, additional steps listed within the notebook.
